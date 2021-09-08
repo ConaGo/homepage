@@ -1,0 +1,55 @@
+<svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <linearGradient id="Gradient-1" x1="0%" y1="50%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#00ffaa" />
+          <stop offset="20%" stop-color="#009463" />
+          <stop offset="40%" stop-color="#00003b" />
+          <stop offset="100%" stop-color="#00183d" />
+        </linearGradient>
+        <linearGradient id="Gradient-2" x1="0%" y1="50%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#00ffaa" />
+          <stop offset="20%" stop-color="#009463" />
+          <stop offset="40%" stop-color="#00003b" />
+          <stop offset="100%" stop-color="#00183d" />
+        </linearGradient>
+        <linearGradient id="Gradient-3" x1="0%" y1="50%" x2="100%" y2="0%">
+
+          <stop offset="0%" stop-color="#009463" />
+          <stop offset="40%" stop-color="#00003b" />
+          <stop offset="100%" stop-color="#00183d" />
+        </linearGradient>
+      </defs>
+      <circle
+        cx="50" 
+        cy="50" 
+        r="40"
+        width="100%"
+        height="100%"
+        fill="url(#Gradient-1)"
+        stroke="#333333"
+        stroke-width="0px"
+        d="M 0 180 V 0 80 C 95 10, 220 210, 300 80 C 350 80, 310 150, 420 80 V 300 180"
+      />
+      <circle
+        cx="25" 
+        cy="25" 
+        r="15"
+        width="100%"
+        height="100%"
+        fill="url(#Gradient-2)"
+        stroke="#333333"
+        stroke-width="0px"
+        d="M 0 180 V 0 80 C 95 10, 220 210, 300 80 C 350 80, 310 150, 420 80 V 300 180"
+      />
+      <circle
+        cx="70" 
+        cy="70" 
+        r="9"
+        width="100%"
+        height="100%"
+        fill="url(#Gradient-3)"
+        stroke="#333333"
+        stroke-width="0px"
+        d="M 0 180 V 0 80 C 95 10, 220 210, 300 80 C 350 80, 310 150, 420 80 V 300 180"
+      />
+</svg>
