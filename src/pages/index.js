@@ -13,7 +13,6 @@ import Asteroid1 from "../assets/asteroids/asteroidBot.svg";
 import Asteroid2 from "../assets/asteroids/asteroidBotRight.svg";
 import Asteroid3 from "../assets/asteroids/asteroidBotRight2.svg";
 import Asteroid4 from "../assets/asteroids/asteroidTopRight.svg";
-import Capture from "../images/Capture.png";
 import Stars from "../assets/starfield.svg";
 import Planet from "../components/planet";
 import useWindowSize from "../hooks/useWindowSize";
