@@ -14,7 +14,7 @@ const Planet = ({
   return (
     <div
       style={{
-        width: size + "px",
+        width: diameter * 100 + "%",
         position: "absolute",
         top: (windowSize.height / 12) * posX + "px",
         left: ((windowSize.width - size) / 12) * posY + "px",

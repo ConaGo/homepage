@@ -1,7 +1,13 @@
 import * as React from "react";
 import { useSpring, animated } from "@react-spring/web";
 
-const WithMovement = ({ children, width = 20, left = 40, top = 40 }) => {
+const WithMovement = ({
+  children,
+  width = 20,
+  left = 40,
+  top = 40,
+  rotation,
+}) => {
   const { o } = useSpring({
     from: { o: 0 },
     o: 1,
@@ -11,6 +17,7 @@ const WithMovement = ({ children, width = 20, left = 40, top = 40 }) => {
   return (
     <animated.div
       style={{
+        zIndex: 4,
         transform: o
           .to({
             range: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
@@ -18,7 +25,7 @@ const WithMovement = ({ children, width = 20, left = 40, top = 40 }) => {
           })
           .to(
             (o) =>
-              `translate(${0 * 0.1}%, ${o}%) rotate(${o * 0.2}deg) scale(${
+              `translate(${0 * 0.1}%, ${o}%) rotate(${rotation}deg) scale(${
                 1 + 0.005 * o
               })`
           ),
@@ -35,32 +42,11 @@ const WithMovement = ({ children, width = 20, left = 40, top = 40 }) => {
 
 export default WithMovement;
 
-const WithMovement2 = ({ Child, width = "20%" }) => {
-  const { o } = useSpring({
-    from: { o: 0 },
-    o: 1,
-    loop: true,
-    config: { duration: 250 },
-  });
-  return (
-    <div>
-      <animated.Child
-        style={{
-          transform: o
-            .to({
-              range: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-              output: [0, 20, 37, 50, 37, 20, 0, -18, -30, -18, 0],
-            })
-            .to(
-              (o) =>
-                `translate(${o}%, ${0}%) rotate(${o * 0.2}deg) scale(${
-                  1 + 0.005 * o
-                })`
-            ),
-          width: width,
-          margin: "auto",
-        }}
-      ></animated.Child>
-    </div>
-  );
-};
+//E07E50; hell
+//B75B32
+//6C3015
+
+//dots
+//C93F1A hell
+//A12E0F
+//601908
