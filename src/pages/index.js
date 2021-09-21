@@ -23,8 +23,6 @@ import AsteroidField from "../components/asteroidField";
 import ContactForm from "../components/contactForm";
 import Field from "../images/field.png";
 import { useMediaQuery } from "react-responsive";
-
-import Capture from "../images/capture.png";
 const IndexPage = () => {
   const scrollRef = React.useRef(null);
   const [currentPage, setCurrentPage] = React.useState(0);

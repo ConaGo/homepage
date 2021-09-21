@@ -8,9 +8,9 @@ import {
   config,
   useTransition,
 } from "@react-spring/web";
-import Capture from "../images/capture.png";
+import Capture from "../images/me.png";
 import { Waypoint } from "react-waypoint";
-import LocationMarker from "../assets/locationmarker.svg";
+import LocationMarker from "../assets/locationMarker.svg";
 import { Box, Heading, Button, Avatar, Grid } from "@theme-ui/components";
 /* import config from "../config"; */
 const Card = ({ show = false, page = 0 }) => {
