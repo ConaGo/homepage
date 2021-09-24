@@ -1,10 +1,11 @@
 import * as React from "react";
 import { ParallaxLayer } from "@react-spring/parallax";
 import WithAbsolutePosition from "./withAbsolutePosition";
-import Asteroid1 from "../assets/asteroids/asteroidBot.svg";
-import Asteroid2 from "../assets/asteroids/asteroidBotRight.svg";
-import Asteroid3 from "../assets/asteroids/asteroidBotRight2.svg";
-import Asteroid4 from "../assets/asteroids/asteroidTopRight.svg";
+//import Asteroid1 from "../assets/asteroids/asteroidBot.svg";
+//import Asteroid2 from "../assets/asteroids/asteroidBotRight.svg";
+//import Asteroid3 from "../assets/asteroids/asteroidBotRight2.svg";
+//import Asteroid4 from "../assets/asteroids/asteroidTopRight.svg";
+import { Asteroid1, Asteroid2, Asteroid3, Asteroid4 } from "./asteroids";
 const randomAsteroid = () => {
   const rand = Math.floor(Math.random() * 4);
   switch (rand) {

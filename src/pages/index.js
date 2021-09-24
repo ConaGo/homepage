@@ -1,14 +1,7 @@
 import * as React from "react";
 import { Box, Heading, Button, Avatar } from "@theme-ui/components";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-/* import Test from "../assets/test.svg";
-import TwoArrows from "../assets/twoArrows.svg";
-import Triangle from "../assets/triangle.svg";
-import TwoCircle from "../assets/twoCircle.svg";
-import SideBar from "../components/sidebar";
-import StarWarsText from "../components/starWarsText";
 
-import MorphText from "../components/morphText"; */
 import Waypoints from "../components/waypoints";
 import Stars from "../assets/starfield.svg";
 import Planet from "../components/planet";
@@ -16,6 +9,7 @@ import useWindowSize from "../hooks/useWindowSize";
 import NavMenu from "../components/navMenu";
 import { useSpring, config, useSpringRef, useChain } from "@react-spring/web";
 import "@fontsource/iceland";
+import "@fontsource/Raleway";
 import Header from "../components/header";
 import DownArrow from "../components/downArrow";
 import Card from "../components/card";
