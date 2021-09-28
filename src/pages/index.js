@@ -9,7 +9,7 @@ import useWindowSize from "../hooks/useWindowSize";
 import NavMenu from "../components/navMenu";
 import { useSpring, config, useSpringRef, useChain } from "@react-spring/web";
 import "@fontsource/iceland";
-import "@fontsource/Raleway";
+import "@fontsource/raleway";
 import Header from "../components/header";
 import DownArrow from "../components/downArrow";
 import Card from "../components/card";
