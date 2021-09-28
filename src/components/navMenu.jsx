@@ -3,7 +3,7 @@ import Goo from "gooey-react";
 import { useSpring, useSprings, animated } from "@react-spring/web";
 import config from "../config";
 
-const NavMenu = ({ page, setPage, enabled }) => {
+const NavMenu = ({ page, setPage, enabled, isBig }) => {
   const [lastPage, setLastPage] = React.useState(0);
   const points = [
     { position: "10%" },
@@ -23,7 +23,7 @@ const NavMenu = ({ page, setPage, enabled }) => {
     points.map((item) => ({ opacity: item.opacity }))
   );
   const { right } = useSpring({
-    right: enabled ? "-100px" : "-300px",
+    right: enabled ? (isBig ? "-100px" : "-120px") : "-300px",
   });
   console.log(enabled);
   const radius = 22;

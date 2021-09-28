@@ -7,6 +7,7 @@ import {
   useChain,
 } from "@react-spring/web";
 import Astronaut from "../images/astronaut1.png";
+import styleConfig from "../config";
 const Header = ({ topRef, bottomRef, widthRef, setDone }) => {
   //TEXT
   const pStyle = {
@@ -17,6 +18,7 @@ const Header = ({ topRef, bottomRef, widthRef, setDone }) => {
     margin: "2rem 0",
     textShadow:
       "-1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000",
+    textShadow: "0 0 6px " + styleConfig.primary,
   };
 
   const styleTop = useSpring({
@@ -100,7 +102,12 @@ const Header = ({ topRef, bottomRef, widthRef, setDone }) => {
           ...styleBottom,
         }} /* style={{ marginTop: "30%" }} */
       >
-        <p style={pStyle}>And I 🖤</p>
+        <p style={pStyle}>
+          And I{" "}
+          <span style={{ textShadow: "0 0 40px " + styleConfig.primary }}>
+            🖤
+          </span>
+        </p>
         <p style={pStyle}>Software</p>
       </animated.section>
     </>

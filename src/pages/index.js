@@ -17,7 +17,12 @@ import AsteroidField from "../components/asteroidField";
 import ContactForm from "../components/contactForm";
 import Field from "../images/field.png";
 import { useMediaQuery } from "react-responsive";
+import { Helmet } from "react-helmet";
+import useMedia from "../hooks/useMediaQuery";
+
+import HorizontalArrow from "../components/horizontalArrow";
 const IndexPage = () => {
+  const { isBig } = useMedia();
   const scrollRef = React.useRef(null);
   const [currentPage, setCurrentPage] = React.useState(0);
   const scrollTo = (page) => {
@@ -54,7 +59,15 @@ const IndexPage = () => {
     query: "(min-width: 1224px)",
   });
   return (
-    <>
+    <div style={{ backgroundColor: "black" }}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Conago</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+        ></meta>
+      </Helmet>
       <Parallax
         enabled={true}
         config={config.gentle}
@@ -63,8 +76,11 @@ const IndexPage = () => {
         style={{ top: "0", left: "0" }}
         current={2}
         update={(e) => console.log(e)}
+        backgroundColor="black"
       >
         <Waypoints setPage={setCurrentPage} />
+
+        {/* Background */}
         <ParallaxLayer
           factor={5.5}
           offset={0}
@@ -82,14 +98,14 @@ const IndexPage = () => {
               top: windowSize.height * 1 + "px",
               left: "0",
               width: "100%",
-              height: "50.1%",
+              height: "100%",
               backgroundImage:
-                "linear-gradient(to bottom, rgba(255,255,255, 0), rgba(0,255,255, 0.5) 100%)",
+                "linear-gradient(to bottom, rgba(255,255,255, 0), rgba(0,255,255, 1) 100%)",
             }}
           ></div>
           <Stars style={{ width: "100%", position: "relative" }}></Stars>
-          {/* <StarWarsText></StarWarsText> */}
         </ParallaxLayer>
+        {/* Header */}
         <ParallaxLayer offset={0} speed={1.3} factor={1}>
           <Header
             widthRef={widthRef}
@@ -99,41 +115,21 @@ const IndexPage = () => {
           />
         </ParallaxLayer>
         <ParallaxLayer sticky={{ start: 1, end: 3 }}>
+          {!isBig && <HorizontalArrow />}
           {currentPage >= 1 && currentPage <= 3 && (
-            <Card show={currentPage >= 1} page={currentPage}></Card>
+            <Card
+              show={currentPage >= 1}
+              page={currentPage}
+              isBig={isBig}
+            ></Card>
           )}
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0}>
           <img width="100%" src={Field} />
-          <AsteroidField />
+          {/* <AsteroidField /> */}
         </ParallaxLayer>
         <ParallaxLayer offset={0}>
           <AsteroidField />
-        </ParallaxLayer>
-
-        <ParallaxLayer
-          factor={5.5}
-          offset={3.5}
-          speed={0}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Stars style={{ width: "100%", position: "relative" }}></Stars>
-          <div
-            style={{
-              position: "absolute",
-              zIndex: "0",
-              top: "0px",
-              left: "0",
-              width: "100%",
-              height: "100%",
-              backgroundImage:
-                "linear-gradient(to bottom, rgba(0,255,255, 0.45), rgba(0,255,255, 1) 100%)",
-            }}
-          ></div>
         </ParallaxLayer>
         <ParallaxLayer offset={4} speed={1.1}>
           <Planet posX={0} rotation={47} diameter={2}></Planet>
@@ -180,10 +176,11 @@ const IndexPage = () => {
             enabled={navEnabled}
             page={currentPage}
             setPage={scrollTo}
+            isBig={isBig}
           ></NavMenu>
         </ParallaxLayer>
       </Parallax>
-    </>
+    </div>
   );
 };
 

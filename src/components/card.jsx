@@ -12,13 +12,21 @@ import Capture from "../images/me.png";
 import { Waypoint } from "react-waypoint";
 import LocationMarker from "../assets/locationMarker.svg";
 import { Box, Heading, Button, Avatar, Grid } from "@theme-ui/components";
-import useMedia from "../hooks/useMediaQuery";
+
 import styleConfig from "../config";
 import Goo from "gooey-react";
+import {
+  FrameWorkIcons1,
+  FrameWorkIcons2,
+  DbIcons,
+  LanguageIcons1,
+  LanguageIcons2,
+  LibrayIcons,
+} from "./icon";
+
+import HorizontalArrow from "../components/horizontalArrow";
 /* import config from "../config"; */
-const Card = ({ show = false, page = 0 }) => {
-  const { isBig } = useMedia();
-  console.log(isBig + " isBig");
+const Card = ({ show = false, page = 0, isBig }) => {
   const pStyle = {
     textAlign: "center",
     fontSize: "10vh",
@@ -27,6 +35,7 @@ const Card = ({ show = false, page = 0 }) => {
     margin: "2rem 0",
     textShadow:
       "-1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000",
+    textShadow: "0 0 10px " + styleConfig.primary,
   };
   const sharedStyle = {
     //width: "100%",
@@ -73,7 +82,17 @@ const Card = ({ show = false, page = 0 }) => {
     width: "4%",
     height: "4%",
   }));
-
+  const glassStyle = {
+    background: "rgba(000,011,28,0.8)", //"rgba(000,041,83,0.15)",
+    display: "flex",
+    //justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    backdropFilter: "blur(5px)",
+    width: "20%",
+    minWidth: "300px",
+    height: "100%",
+  };
   const boxStyle = {
     margin: "3%",
     height: "50%",
@@ -81,13 +100,16 @@ const Card = ({ show = false, page = 0 }) => {
     borderStyle: "groove",
     borderWidth: "2%",
     borderColor: config.primary,
-    backgroundColor: "#000317",
+    backgroundColor: "rgba(0, 3, 23, 0.8)", //#000317",
+    backdropFilter: "blur(49px)",
     borderRadius: "10px",
     backgroundColor2: "#31333d",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
+    boxShadow: "0 0 10px " + styleConfig.primary,
+    paddingBottom: "1em",
   };
   /*   if (show) topApi.start({ opacity: 3, top: "3rem" });
   else {
@@ -96,7 +118,6 @@ const Card = ({ show = false, page = 0 }) => {
   } */
 
   const [toggle, setToggle] = React.useState(false);
-  console.log("tiggle" + toggle);
   if (page === 1 && !toggle) {
     trailApi1.start({
       opacity: 1, //page === 1 ? 1 : 0,
@@ -132,6 +153,12 @@ const Card = ({ show = false, page = 0 }) => {
     config: config.molasses,
   });
 
+  const [horizontalSroll1, setHorizontalScroll1] = React.useState(0);
+  const scrollHorizontal = () => {
+    console.log(horizontalSroll1);
+    setHorizontalScroll1((horizontalSroll1 + 1) % 3);
+  };
+
   return transitions(({ opacity }, item) =>
     !(page >= 1 || page <= 3) ? null : item ? (
       <animated.div
@@ -154,11 +181,12 @@ const Card = ({ show = false, page = 0 }) => {
             width: "100%",
           }}
         >
-          <animated.div style={{ ...boxStyle, ...trailStyles1[0] }}>
-            <AboutMe1 isBig={isBig}></AboutMe1>
-          </animated.div>
-          {isBig && (
+          {/* {!isBig && <HorizontalArrow onClick={scrollHorizontal} />} */}
+          {isBig ? (
             <>
+              <animated.div style={{ ...boxStyle, ...trailStyles1[0] }}>
+                <AboutMe1 isBig={isBig}></AboutMe1>
+              </animated.div>
               <animated.div style={{ ...boxStyle, ...trailStyles1[1] }}>
                 <AboutMe2 isBig={isBig}></AboutMe2>
               </animated.div>
@@ -166,6 +194,18 @@ const Card = ({ show = false, page = 0 }) => {
                 Box
               </animated.div>
             </>
+          ) : horizontalSroll1 === 0 ? (
+            <animated.div style={{ ...boxStyle, ...trailStyles1[0] }}>
+              <AboutMe1 isBig={isBig}></AboutMe1>
+            </animated.div>
+          ) : horizontalSroll1 === 1 ? (
+            <animated.div style={{ ...boxStyle, ...trailStyles1[1] }}>
+              <AboutMe2 isBig={isBig}></AboutMe2>
+            </animated.div>
+          ) : (
+            <animated.div style={{ ...boxStyle, ...trailStyles1[2] }}>
+              <AboutMe3 isBig={isBig}></AboutMe3>
+            </animated.div>
           )}
         </div>
       </animated.div>
@@ -178,7 +218,7 @@ const Card = ({ show = false, page = 0 }) => {
           opacity: opacity.to({ range: [0.0, 1.0], output: [0, 1] }),
         }}
       >
-        <p style={pStyle}>Personal Projects</p>
+        <p style={pStyle}>Projects</p>
         <div
           style={{
             position: "absolute",
@@ -222,6 +262,7 @@ const AboutMe1 = ({ isBig }) => {
           margin: "1em",
           width: "80%",
           height: "auto",
+          //boxShadow: "0 0 17px " + styleConfig.primary,
         }}
         src={Capture}
       ></Avatar>
@@ -230,7 +271,7 @@ const AboutMe1 = ({ isBig }) => {
           display: "grid",
           gridTemplateColumns: "1fr 3fr",
           rowGap: " 0.5em",
-          marginBottom: "3rem",
+          marginBottom: "1rem",
         }}
       >
         <Box
@@ -298,6 +339,7 @@ const AboutMe2 = ({ isBig }) => {
     fontFamily: "iceland, roboto",
     color: "white",
     margin: "0em  0.4em",
+    whiteSpace: "nowrap",
   };
   const fontStyleBody = {
     fontSize: !isBig ? "1.8rem" : "2.3rem",
@@ -305,7 +347,73 @@ const AboutMe2 = ({ isBig }) => {
     color: "white",
     margin: "0em  0.4em",
   };
-  return <Box></Box>;
+  const boxStyle = {
+    margin: "0 3em",
+  };
+  const Hr = () => {
+    return (
+      <div style={{ width: "80%", position: "relative", margin: "0.55em" }}>
+        <hr
+          style={{
+            position: "absolute",
+            width: "100%",
+            border: "1px solid white",
+            borderRadius: "20px",
+            boxShadow: "0 0 6px " + styleConfig.primary,
+
+            /*           borderTop: "1px solid " + styleConfig.secondary, */
+          }}
+        ></hr>
+        <hr
+          style={{
+            position: "relative",
+            width: "1%",
+            border: "1px solid " + styleConfig.primary,
+            borderRadius: "20px",
+
+            /*           borderTop: "1px solid " + styleConfig.secondary, */
+          }}
+        ></hr>
+      </div>
+    );
+  };
+  return (
+    <animated.div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
+      <Box style={fontStyle}>Favourite Tech</Box>
+      <Hr />
+      <Box style={boxStyle}>
+        {LanguageIcons1}
+        {LanguageIcons2}
+      </Box>
+
+      <Hr />
+      {FrameWorkIcons1}
+      {FrameWorkIcons2}
+      <Hr />
+      {DbIcons}
+      <Hr />
+      {LibrayIcons}
+      {/*       <Box style={fontStyle}>Favourite Tech</Box>
+      <Box>
+        <FrameWorkIcons></FrameWorkIcons>
+      </Box>
+      <Box style={fontStyle}>Favourite Tech</Box>
+      <Box>
+        <DbIcons></DbIcons>
+      </Box>
+      <Box style={fontStyle}>Favourite Tech</Box>
+      <Box>
+        <LibrayIcons></LibrayIcons>
+      </Box> */}
+    </animated.div>
+  );
 };
 const AboutMe3 = ({ isBig }) => {
   const fontStyle = {
@@ -320,5 +428,5 @@ const AboutMe3 = ({ isBig }) => {
     color: "white",
     margin: "0em  0.4em",
   };
-  return null;
+  return <Box style={fontStyle}>Currently learning</Box>;
 };
