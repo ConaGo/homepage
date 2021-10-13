@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../assets/css/progressbar.css";
+import "../assets/css/progressBar.css";
 
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
