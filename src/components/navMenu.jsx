@@ -25,7 +25,6 @@ const NavMenu = ({ page, setPage, enabled, isBig }) => {
   const { right } = useSpring({
     right: enabled ? (isBig ? "-100px" : "-120px") : "-300px",
   });
-  console.log(enabled);
   const radius = 22;
   //const fill = config.primary;
   const height = 350;

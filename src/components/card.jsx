@@ -12,37 +12,42 @@ import Capture from "../images/me.png";
 import { Waypoint } from "react-waypoint";
 import LocationMarker from "../assets/locationMarker.svg";
 import { Box, Heading, Button, Avatar, Grid } from "@theme-ui/components";
-
+import { Icon } from "@iconify/react";
 import styleConfig from "../config";
 import Goo from "gooey-react";
 import {
+  ReactIcon,
+  MuiIcon,
+  NestJSIcon,
+  NextJSIcon,
+  PostgresIcon,
+  NodeIcon,
+  NXIcon,
+  GithubIcon,
+  TechIcon,
+  TechIcons,
   FrameWorkIcons1,
   FrameWorkIcons2,
   DbIcons,
   LanguageIcons1,
   LanguageIcons2,
   LibrayIcons,
+  LearningIcons,
 } from "./icon";
 
 import HorizontalArrow from "../components/horizontalArrow";
 /* import config from "../config"; */
-const Card = ({ show = false, page = 0, isBig }) => {
+const Card = ({ show = false, page = 0, isBig, horizontalScroll }) => {
   const pStyle = {
     textAlign: "center",
     fontSize: "10vh",
     color: "white",
     fontFamily: "Iceland, roboto",
-    margin: "2rem 0",
+    margin: "1rem 0",
     textShadow:
       "-1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000",
     textShadow: "0 0 10px " + styleConfig.primary,
   };
-  const sharedStyle = {
-    //width: "100%",
-    /*     position: "absolute",
-    margin: "auto 0", */
-  };
-  const topRef = useSpringRef();
   const styleTop1 = useSpring({
     opacity: page === 1 ? 1 : 0,
     top: page === 1 ? "3rem" : "30rem",
@@ -58,7 +63,6 @@ const Card = ({ show = false, page = 0, isBig }) => {
       });
     },
   });
-
   const [trailStyles1, trailApi1] = useTrail(3, () => ({
     opacity: 0,
     width: "4%",
@@ -82,26 +86,15 @@ const Card = ({ show = false, page = 0, isBig }) => {
     width: "4%",
     height: "4%",
   }));
-  const glassStyle = {
-    background: "rgba(000,011,28,0.8)", //"rgba(000,041,83,0.15)",
-    display: "flex",
-    //justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    backdropFilter: "blur(5px)",
-    width: "20%",
-    minWidth: "300px",
-    height: "100%",
-  };
   const boxStyle = {
-    margin: "3%",
+    margin: "0 3% 3% 3%",
     height: "50%",
     //width: "22%",
     borderStyle: "groove",
     borderWidth: "2%",
     borderColor: config.primary,
     backgroundColor: "rgba(0, 3, 23, 0.8)", //#000317",
-    backdropFilter: "blur(49px)",
+    //backdropFilter: "blur(49px)",
     borderRadius: "10px",
     backgroundColor2: "#31333d",
     display: "flex",
@@ -153,12 +146,6 @@ const Card = ({ show = false, page = 0, isBig }) => {
     config: config.molasses,
   });
 
-  const [horizontalSroll1, setHorizontalScroll1] = React.useState(0);
-  const scrollHorizontal = () => {
-    console.log(horizontalSroll1);
-    setHorizontalScroll1((horizontalSroll1 + 1) % 3);
-  };
-
   return transitions(({ opacity }, item) =>
     !(page >= 1 || page <= 3) ? null : item ? (
       <animated.div
@@ -172,8 +159,6 @@ const Card = ({ show = false, page = 0, isBig }) => {
         <p style={pStyle}>About Me</p>
         <div
           style={{
-            //position: "absolute",
-            zIndex: "5",
             display: "flex",
             justifyContent: "center",
             alignItems: "flex-start",
@@ -191,14 +176,14 @@ const Card = ({ show = false, page = 0, isBig }) => {
                 <AboutMe2 isBig={isBig}></AboutMe2>
               </animated.div>
               <animated.div style={{ ...boxStyle, ...trailStyles1[2] }}>
-                Box
+                <AboutMe3 isBig={isBig}></AboutMe3>
               </animated.div>
             </>
-          ) : horizontalSroll1 === 0 ? (
+          ) : horizontalScroll === 0 ? (
             <animated.div style={{ ...boxStyle, ...trailStyles1[0] }}>
               <AboutMe1 isBig={isBig}></AboutMe1>
             </animated.div>
-          ) : horizontalSroll1 === 1 ? (
+          ) : horizontalScroll === 1 ? (
             <animated.div style={{ ...boxStyle, ...trailStyles1[1] }}>
               <AboutMe2 isBig={isBig}></AboutMe2>
             </animated.div>
@@ -221,8 +206,6 @@ const Card = ({ show = false, page = 0, isBig }) => {
         <p style={pStyle}>Projects</p>
         <div
           style={{
-            position: "absolute",
-            zIndex: "5",
             display: "flex",
             justifyContent: "center",
             alignItems: "flex-start",
@@ -230,15 +213,32 @@ const Card = ({ show = false, page = 0, isBig }) => {
             width: "100%",
           }}
         >
-          <animated.div style={{ ...boxStyle, ...trailStyles2[0] }}>
-            Box
-          </animated.div>
-          <animated.div style={{ ...boxStyle, ...trailStyles2[1] }}>
-            Box
-          </animated.div>
-          <animated.div style={{ ...boxStyle, ...trailStyles2[2] }}>
-            Box
-          </animated.div>
+          {/* {!isBig && <HorizontalArrow onClick={scrollHorizontal} />} */}
+          {isBig ? (
+            <>
+              <animated.div style={{ ...boxStyle, ...trailStyles2[0] }}>
+                <Project1 isBig={isBig}></Project1>
+              </animated.div>
+              <animated.div style={{ ...boxStyle, ...trailStyles2[1] }}>
+                <Project1 isBig={isBig}></Project1>
+              </animated.div>
+              <animated.div style={{ ...boxStyle, ...trailStyles2[2] }}>
+                <Project1 isBig={isBig}></Project1>
+              </animated.div>
+            </>
+          ) : horizontalScroll === 0 ? (
+            <animated.div style={{ ...boxStyle, ...trailStyles2[0] }}>
+              <Project1 isBig={isBig}></Project1>
+            </animated.div>
+          ) : horizontalScroll === 1 ? (
+            <animated.div style={{ ...boxStyle, ...trailStyles2[1] }}>
+              <Project1 isBig={isBig}></Project1>
+            </animated.div>
+          ) : (
+            <animated.div style={{ ...boxStyle, ...trailStyles2[2] }}>
+              <Project1 isBig={isBig}></Project1>
+            </animated.div>
+          )}
         </div>
       </animated.div>
     )
@@ -246,7 +246,39 @@ const Card = ({ show = false, page = 0, isBig }) => {
 };
 
 export default Card;
+const Hr = ({ isBig }) => {
+  return (
+    <div
+      style={{
+        width: !isBig ? "50%" : "80%",
+        position: "relative",
+        margin: "0.55em",
+      }}
+    >
+      <hr
+        style={{
+          position: "absolute",
+          width: "100%",
+          border: "1px solid white",
+          borderRadius: "20px",
+          boxShadow: "0 0 6px " + styleConfig.primary,
 
+          /*           borderTop: "1px solid " + styleConfig.secondary, */
+        }}
+      ></hr>
+      <hr
+        style={{
+          position: "relative",
+          width: "1%",
+          border: "1px solid " + styleConfig.primary,
+          borderRadius: "20px",
+
+          /*           borderTop: "1px solid " + styleConfig.secondary, */
+        }}
+      ></hr>
+    </div>
+  );
+};
 const AboutMe1 = ({ isBig }) => {
   const fontStyle = {
     fontSize: !isBig ? "1.8rem" : "2.3rem",
@@ -329,10 +361,31 @@ const AboutMe1 = ({ isBig }) => {
           🎓
         </Box>
         <Box style={fontStyle}> TU Berlin</Box>
+        <Box
+          style={{
+            marginTop: "3px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: !isBig ? "1.8rem" : "2.3rem",
+            height: "42px",
+            textShadow: "0 0 5px " + styleConfig.primary,
+          }}
+          onClick={() => openInNewTab("https://www.github.com/conago")}
+        >
+          <GithubIcon />
+        </Box>
+        <Box
+          onClick={() => openInNewTab("https://www.github.com/conago")}
+          style={{ ...fontStyle, textShadow: "0 0 5px " + styleConfig.primary }}
+        >
+          ConaGo
+        </Box>
       </Box>
     </>
   );
 };
+
 const AboutMe2 = ({ isBig }) => {
   const fontStyle = {
     fontSize: !isBig ? "1.8rem" : "2.3rem",
@@ -350,83 +403,85 @@ const AboutMe2 = ({ isBig }) => {
   const boxStyle = {
     margin: "0 3em",
   };
-  const Hr = () => {
-    return (
-      <div style={{ width: "80%", position: "relative", margin: "0.55em" }}>
-        <hr
-          style={{
-            position: "absolute",
-            width: "100%",
-            border: "1px solid white",
-            borderRadius: "20px",
-            boxShadow: "0 0 6px " + styleConfig.primary,
-
-            /*           borderTop: "1px solid " + styleConfig.secondary, */
-          }}
-        ></hr>
-        <hr
-          style={{
-            position: "relative",
-            width: "1%",
-            border: "1px solid " + styleConfig.primary,
-            borderRadius: "20px",
-
-            /*           borderTop: "1px solid " + styleConfig.secondary, */
-          }}
-        ></hr>
-      </div>
-    );
-  };
+  const getSize = () => (isBig ? 4 : 2.3);
   return (
-    <animated.div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
+    <>
       <Box style={fontStyle}>Favourite Tech</Box>
-      <Hr />
+      <Hr isBig={isBig} />
       <Box style={boxStyle}>
-        {LanguageIcons1}
-        {LanguageIcons2}
+        {LanguageIcons1(getSize())}
+        {LanguageIcons2(getSize())}
       </Box>
 
-      <Hr />
-      {FrameWorkIcons1}
-      {FrameWorkIcons2}
-      <Hr />
-      {DbIcons}
-      <Hr />
-      {LibrayIcons}
-      {/*       <Box style={fontStyle}>Favourite Tech</Box>
-      <Box>
-        <FrameWorkIcons></FrameWorkIcons>
-      </Box>
-      <Box style={fontStyle}>Favourite Tech</Box>
-      <Box>
-        <DbIcons></DbIcons>
-      </Box>
-      <Box style={fontStyle}>Favourite Tech</Box>
-      <Box>
-        <LibrayIcons></LibrayIcons>
-      </Box> */}
-    </animated.div>
+      <Hr isBig={isBig} />
+      {FrameWorkIcons1(getSize())}
+      {FrameWorkIcons2(getSize())}
+      <Hr isBig={isBig} />
+      {DbIcons(getSize())}
+      <Hr isBig={isBig} />
+      {LibrayIcons(getSize())}
+    </>
   );
 };
+function openInNewTab(url) {
+  console.log("clicked");
+  window.open(url, "_blank").focus();
+}
 const AboutMe3 = ({ isBig }) => {
   const fontStyle = {
     fontSize: !isBig ? "1.8rem" : "2.3rem",
     fontFamily: "iceland, roboto",
     color: "white",
     margin: "0em  0.4em",
+    whiteSpace: "nowrap",
   };
-  const fontStyleBody = {
-    fontSize: !isBig ? "1.8rem" : "2.3rem",
-    fontFamily: "raleway, roboto",
+  const getSize = () => (isBig ? 4 : 2.3);
+  return (
+    <>
+      <Box style={fontStyle}>Currently learning</Box>
+      <Hr></Hr>
+      {LearningIcons(getSize())}
+      <Box style={{ height: "2rem" }}>
+        {TechIcon({
+          size: 2.3,
+          name: "dashicons:book",
+          color: styleConfig.primaryLess,
+        })}
+      </Box>
+    </>
+  );
+};
+
+const Project1 = ({ isBig }) => {
+  const fontStyle = {
+    fontSize: !isBig ? "2.8rem" : "3.3rem",
+    fontFamily: "iceland, roboto",
     color: "white",
     margin: "0em  0.4em",
+    whiteSpace: "nowrap",
+    textAlign: "center",
   };
-  return <Box style={fontStyle}>Currently learning</Box>;
+  const fontStyleBody = {
+    fontSize: !isBig ? "1.3rem" : "1.3rem",
+    fontFamily: "raleway, roboto",
+    color: "white",
+    wordWrap: "break-word",
+    textAlign: "center",
+    margin: "0.5em",
+  };
+  const boxStyle = {
+    margin: "0 3em",
+  };
+  return (
+    <Box onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}>
+      <Box style={fontStyle}>Quizflip.de</Box>
+      <Box style={fontStyleBody}>Digital learning and Quiz app</Box>
+      <GithubIcon />
+      <div class="meter animate">
+        <span style={{ width: "80%" }}>
+          <span></span>
+        </span>
+      </div>
+    </Box>
+  );
 };

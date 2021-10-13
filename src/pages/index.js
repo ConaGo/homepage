@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Box, Heading, Button, Avatar } from "@theme-ui/components";
+import "../assets/css/progressbar.css";
+
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 import Waypoints from "../components/waypoints";
@@ -16,7 +17,6 @@ import Card from "../components/card";
 import AsteroidField from "../components/asteroidField";
 import ContactForm from "../components/contactForm";
 import Field from "../images/field.png";
-import { useMediaQuery } from "react-responsive";
 import { Helmet } from "react-helmet";
 import useMedia from "../hooks/useMediaQuery";
 
@@ -32,14 +32,11 @@ const IndexPage = () => {
   const pages = 5;
   const scrollNext = () => {
     const nextPage = (currentPage + 1) % pages;
-    console.log(nextPage);
     setCurrentPage(nextPage);
     scrollRef.current.scrollTo(nextPage);
   };
   const [reachedPage, setReachedPage] = React.useState(0);
   if (currentPage > reachedPage) setReachedPage(currentPage);
-  console.log("reachedPage " + reachedPage);
-  console.log("currentPage " + currentPage);
   const [isheaderDone, setIsHeaderDone] = React.useState(false);
   const windowSize = useWindowSize();
   const topRef = useSpringRef();
@@ -54,10 +51,7 @@ const IndexPage = () => {
     ref: navRef,
   });
   useChain([widthRef, topRef, bottomRef, navRef], [0, 0.3, 0.5, 0.8]);
-
-  const isDesktopOrLaptop = useMediaQuery({
-    query: "(min-width: 1224px)",
-  });
+  const [horizontalScroll, setHorizontalScroll] = React.useState(0);
   return (
     <div style={{ backgroundColor: "black" }}>
       <Helmet>
@@ -78,7 +72,10 @@ const IndexPage = () => {
         update={(e) => console.log(e)}
         backgroundColor="black"
       >
-        <Waypoints setPage={setCurrentPage} />
+        <Waypoints
+          setHorizontalScroll={setHorizontalScroll}
+          setPage={setCurrentPage}
+        />
 
         {/* Background */}
         <ParallaxLayer
@@ -115,9 +112,9 @@ const IndexPage = () => {
           />
         </ParallaxLayer>
         <ParallaxLayer sticky={{ start: 1, end: 3 }}>
-          {!isBig && <HorizontalArrow />}
           {currentPage >= 1 && currentPage <= 3 && (
             <Card
+              horizontalScroll={horizontalScroll}
               show={currentPage >= 1}
               page={currentPage}
               isBig={isBig}
@@ -125,8 +122,7 @@ const IndexPage = () => {
           )}
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0}>
-          <img width="100%" src={Field} />
-          {/* <AsteroidField /> */}
+          <img src={Field} />
         </ParallaxLayer>
         <ParallaxLayer offset={0}>
           <AsteroidField />
@@ -146,7 +142,19 @@ const IndexPage = () => {
         ></ParallaxLayer>
 
         {/* StickyLayer */}
-        <ParallaxLayer offset={0} sticky={{ start: 0, end: 4 }} speed={0.01}>
+        <ParallaxLayer
+          id={"toplayer"}
+          onClick={(e) => {
+            document.getElementById("toplayer").style.visibility = "hidden";
+            if (document.elementFromPoint(e.clientX, e.clientY).click) {
+              document.elementFromPoint(e.clientX, e.clientY).click();
+            }
+            document.getElementById("toplayer").style.visibility = "visible";
+          }}
+          offset={0}
+          sticky={{ start: 0, end: 4 }}
+          speed={0.01}
+        >
           {/* <div
             style={{
               background: "rgba(000,011,28,0.8)", //"rgba(000,041,83,0.15)",
@@ -167,6 +175,12 @@ const IndexPage = () => {
             <Heading as="h5">Lennart Jasper</Heading>
           </div> */}
           <ContactForm show={currentPage === 4} />
+          {!isBig && (
+            <HorizontalArrow
+              onClick={() => setHorizontalScroll((horizontalScroll + 1) % 3)}
+              isVisible={currentPage > 0 && currentPage < 4}
+            />
+          )}
           <DownArrow
             enabled={navEnabled}
             page={currentPage}

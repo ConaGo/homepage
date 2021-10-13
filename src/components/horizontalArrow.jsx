@@ -1,38 +1,34 @@
 import * as React from "react";
-
-const HorizontalArrow = ({ onClicke }) => {
+import { useSpring, animated } from "@react-spring/web";
+const HorizontalArrow = ({ isVisible, onClick = () => {} }) => {
+  const styles = useSpring({
+    opacity: isVisible ? 1 : 0,
+    width: isVisible ? "40%" : "0%",
+  });
   return (
-    <div
-      onclick={() => {
-        console.log("ee");
-        onClicke();
-      }}
-      onClick={() => {
-        console.log("ee");
-        onClicke();
-      }}
+    <animated.div
       style={{
         position: "absolute",
+        top: "40%",
         left: "0px",
         zIndex: 10,
-        height: "200px",
-        width: "200px",
+        height: "30%",
+        ...styles,
       }}
     >
       <svg
-        onclick={() => {
-          console.log("ee");
-          onClicke();
-        }}
         onClick={() => {
-          console.log("ee");
-          onClicke();
+          onClick();
         }}
-        width="17%"
+        width="40%"
         height="100%"
         viewBox="0 0 10 10"
         preserveAspectRatio="xMidYMid meet"
-        style={{ position: "absolute", left: "0px", zIndex: 10 }}
+        style={{
+          position: "absolute",
+          left: "0px",
+          zIndex: 10,
+        }}
       >
         <defs>
           <linearGradient
@@ -51,14 +47,6 @@ const HorizontalArrow = ({ onClicke }) => {
           </linearGradient>
         </defs>
         <path
-          onclick={() => {
-            console.log("ee");
-            onClicke();
-          }}
-          onClick={() => {
-            console.log("ee");
-            onClicke();
-          }}
           width="100%"
           height="100%"
           fill="none"
@@ -69,7 +57,7 @@ const HorizontalArrow = ({ onClicke }) => {
           d="M 5 0, 2 5, 5 10 M 9 0, 6 5, 9 10"
         ></path>
       </svg>
-    </div>
+    </animated.div>
   );
 };
 
