@@ -105,6 +105,74 @@ const GithubIcon = () => {
     ></TechIcons>
   );
 };
+const RustIcon = () => {
+  return (
+    <TechIcons
+      data={[
+        {
+          name: "vscode-icons:file-type-rust",
+          tooltip: "Rust",
+        },
+      ]}
+      size={2.6}
+    ></TechIcons>
+  );
+};
+const PiIcon = () => {
+  return (
+    <TechIcons
+      data={[
+        {
+          name: "logos:raspberry-pi",
+          tooltip: "Raspberry Pi",
+        },
+      ]}
+      size={2.6}
+    ></TechIcons>
+  );
+};
+const SvelteIcon = () => {
+  return (
+    <TechIcons
+      data={[
+        {
+          name: "logos:svelte-icon",
+          tooltip: "Svelte",
+        },
+      ]}
+      size={2.6}
+    ></TechIcons>
+  );
+};
+const GolangIcon = () => {
+  return (
+    <TechIcons
+      data={[
+        {
+          name: "vscode-icons:file-type-go",
+          tooltip: "Rust",
+        },
+      ]}
+      size={2.6}
+    ></TechIcons>
+  );
+};
+const ElixirIcon = () => {
+  return (
+    <TechIcons
+      data={[{ name: "vscode-icons:file-type-elixir", tooltip: "Elixir" }]}
+      size={2.6}
+    ></TechIcons>
+  );
+};
+const PhoenixIcon = () => {
+  return (
+    <TechIcons
+      data={[{ name: "logos:phoenix", tooltip: "Phoenix" }]}
+      size={2.6}
+    ></TechIcons>
+  );
+};
 const NXIcon = () => {
   return (
     <TechIcons
@@ -132,7 +200,7 @@ const PostgresIcon = () => {
 const NextJSIcon = () => {
   return (
     <TechIcons
-      data={[{ name: "logos:nextjs", tooltip: "NextJs" }]}
+      data={[{ name: "cib:next-js", tooltip: "NextJs", color: "lightblue" }]}
       size={2.6}
     ></TechIcons>
   );
@@ -156,12 +224,27 @@ const MuiIcon = () => {
 const NodeIcon = () => {
   return (
     <TechIcons
-      data={[{ name: "file-icons:nx", tooltip: "NX", color: "lightblue" }]}
+      data={[{ name: "vscode-icons:file-type-node", tooltip: "NodeJs" }]}
+      size={2.6}
+    ></TechIcons>
+  );
+};
+const GodotIcon = () => {
+  return (
+    <TechIcons
+      data={[{ name: "vscode-icons:file-type-godot", tooltip: "Godot" }]}
       size={2.6}
     ></TechIcons>
   );
 };
 export {
+  PiIcon,
+  SvelteIcon,
+  GolangIcon,
+  GodotIcon,
+  RustIcon,
+  ElixirIcon,
+  PhoenixIcon,
   ReactIcon,
   MuiIcon,
   NestJSIcon,

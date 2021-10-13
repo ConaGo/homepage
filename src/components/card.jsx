@@ -16,6 +16,13 @@ import { Icon } from "@iconify/react";
 import styleConfig from "../config";
 import Goo from "gooey-react";
 import {
+  PiIcon,
+  SvelteIcon,
+  GolangIcon,
+  GodotIcon,
+  RustIcon,
+  ElixirIcon,
+  PhoenixIcon,
   ReactIcon,
   MuiIcon,
   NestJSIcon,
@@ -43,7 +50,7 @@ const Card = ({ show = false, page = 0, isBig, horizontalScroll }) => {
     fontSize: "10vh",
     color: "white",
     fontFamily: "Iceland, roboto",
-    margin: "1rem 0",
+    margin: isBig ? "1rem 0" : "0",
     textShadow:
       "-1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000",
     textShadow: "0 0 10px " + styleConfig.primary,
@@ -80,7 +87,7 @@ const Card = ({ show = false, page = 0, isBig, horizontalScroll }) => {
         height: "60%",
       }),
   });
-  const mainWidth = () => (isBig ? "22%" : "60%");
+  const mainWidth = () => (isBig ? "22%" : "80%");
   const [trailStyles2, trailApi2] = useTrail(3, () => ({
     opacity: 0,
     width: "4%",
@@ -220,10 +227,10 @@ const Card = ({ show = false, page = 0, isBig, horizontalScroll }) => {
                 <Project1 isBig={isBig}></Project1>
               </animated.div>
               <animated.div style={{ ...boxStyle, ...trailStyles2[1] }}>
-                <Project1 isBig={isBig}></Project1>
+                <Project2 isBig={isBig}></Project2>
               </animated.div>
               <animated.div style={{ ...boxStyle, ...trailStyles2[2] }}>
-                <Project1 isBig={isBig}></Project1>
+                <Project3 isBig={isBig}></Project3>
               </animated.div>
             </>
           ) : horizontalScroll === 0 ? (
@@ -232,11 +239,11 @@ const Card = ({ show = false, page = 0, isBig, horizontalScroll }) => {
             </animated.div>
           ) : horizontalScroll === 1 ? (
             <animated.div style={{ ...boxStyle, ...trailStyles2[1] }}>
-              <Project1 isBig={isBig}></Project1>
+              <Project2 isBig={isBig}></Project2>
             </animated.div>
           ) : (
             <animated.div style={{ ...boxStyle, ...trailStyles2[2] }}>
-              <Project1 isBig={isBig}></Project1>
+              <Project3 isBig={isBig}></Project3>
             </animated.div>
           )}
         </div>
@@ -252,7 +259,7 @@ const Hr = ({ isBig }) => {
       style={{
         width: !isBig ? "50%" : "80%",
         position: "relative",
-        margin: "0.55em",
+        margin: "0 auto",
       }}
     >
       <hr
@@ -425,7 +432,7 @@ const AboutMe2 = ({ isBig }) => {
 };
 function openInNewTab(url) {
   console.log("clicked");
-  window.open(url, "_blank").focus();
+  window.open(url, "_blank");
 }
 const AboutMe3 = ({ isBig }) => {
   const fontStyle = {
@@ -473,15 +480,218 @@ const Project1 = ({ isBig }) => {
     margin: "0 3em",
   };
   return (
-    <Box onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}>
+    <>
       <Box style={fontStyle}>Quizflip.de</Box>
       <Box style={fontStyleBody}>Digital learning and Quiz app</Box>
-      <GithubIcon />
-      <div class="meter animate">
-        <span style={{ width: "80%" }}>
+      <Hr />
+
+      <Box
+        style={fontStyleBody}
+        onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+      >
+        Backend
+        <Box
+          onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <NodeIcon />
+          <NestJSIcon />
+        </Box>
+      </Box>
+      <Hr />
+      <Box
+        style={fontStyleBody}
+        onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+      >
+        Frontend
+        <Box
+          onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <ReactIcon />
+          <MuiIcon />
+          <NextJSIcon />
+        </Box>
+      </Box>
+      <Box style={fontStyleBody}>Progress to first iteration</Box>
+      <div style={{ margin: "0 auto", width: "90%" }} class="meter animate">
+        <span style={{ width: "70%" }}>
           <span></span>
         </span>
       </div>
-    </Box>
+    </>
+  );
+};
+const Project2 = ({ isBig }) => {
+  const fontStyle = {
+    fontSize: !isBig ? "2.8rem" : "3.3rem",
+    fontFamily: "iceland, roboto",
+    color: "white",
+    margin: "0em  0em",
+    whiteSpace: "nowrap",
+    textAlign: "center",
+  };
+  const fontStyleBody = {
+    fontSize: !isBig ? "1.3rem" : "1.3rem",
+    fontFamily: "raleway, roboto",
+    color: "white",
+    wordWrap: "break-word",
+    textAlign: "center",
+    margin: "0.2em",
+  };
+  const boxStyle = {
+    margin: "0 3em",
+  };
+  return (
+    <>
+      <Box style={fontStyle}>Solana Game</Box>
+      <Hr />
+      <Box style={fontStyleBody}>
+        Tower defense inspired game with NFTs and smart Contracts on the Solana
+        Blockchain
+      </Box>
+      <Hr />
+      <Box
+        style={fontStyleBody}
+        onClick={() => openInNewTab("https://github.com/ConaGo/SolanaGame")}
+      >
+        Server
+        <Box
+          onClick={() => openInNewTab("https://github.com/ConaGo/SolanaGame")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <ElixirIcon />
+          <PhoenixIcon />
+        </Box>
+      </Box>
+      <Hr />
+
+      <Box
+        style={fontStyleBody}
+        onClick={() => openInNewTab("https://github.com/ConaGo/SolanaEscrow")}
+      >
+        Game
+        <Box
+          onClick={() => openInNewTab("https://github.com/ConaGo/SolanaEscrow")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <ReactIcon />
+          <GodotIcon />
+        </Box>
+      </Box>
+      <Hr />
+      <Box
+        style={fontStyleBody}
+        onClick={() => openInNewTab("https://github.com/ConaGo/SolanaEscrow")}
+      >
+        Smart Contracts
+        <Box
+          onClick={() => openInNewTab("https://github.com/ConaGo/SolanaEscrow")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <RustIcon />
+        </Box>
+      </Box>
+      {isBig && (
+        <>
+          <Box style={fontStyleBody}>Progress to first iteration</Box>
+          <div style={{ margin: "0 auto", width: "90%" }} class="meter animate">
+            <span style={{ width: "10%" }}>
+              <span></span>
+            </span>
+          </div>
+        </>
+      )}
+    </>
+  );
+};
+const Project3 = ({ isBig }) => {
+  const fontStyle = {
+    fontSize: !isBig ? "2.8rem" : "3.3rem",
+    fontFamily: "iceland, roboto",
+    color: "white",
+    margin: "0em  0.4em",
+    whiteSpace: "nowrap",
+    textAlign: "center",
+  };
+  const fontStyleBody = {
+    fontSize: !isBig ? "1.3rem" : "1.3rem",
+    fontFamily: "raleway, roboto",
+    color: "white",
+    textAlign: "center",
+    margin: "0.5em",
+  };
+  const boxStyle = {
+    margin: "0 3em",
+  };
+  return (
+    <>
+      <Box style={fontStyle}>Tech Con</Box>
+      <Box style={fontStyleBody}>Search for your next Tech Conference</Box>
+      <Hr />
+
+      <Box
+        style={fontStyleBody}
+        onClick={() => openInNewTab("https://github.com/ConaGo/backend-golang")}
+      >
+        Backend
+        <Box
+          onClick={() =>
+            openInNewTab("https://github.com/ConaGo/backend-golang")
+          }
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <PiIcon />
+          <GolangIcon />
+        </Box>
+      </Box>
+      <Hr />
+      <Box
+        style={fontStyleBody}
+        onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+      >
+        Frontend
+        <Box
+          onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <SvelteIcon />
+        </Box>
+      </Box>
+      <Box style={fontStyleBody}>Progress to first iteration</Box>
+      <div style={{ margin: "0 auto", width: "90%" }} class="meter animate">
+        <span style={{ width: "90%" }}>
+          <span></span>
+        </span>
+      </div>
+    </>
   );
 };
