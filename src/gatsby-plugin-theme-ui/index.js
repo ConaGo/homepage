@@ -13,7 +13,7 @@ const theme = {
       borderRadius: 99999,
     },
   },
-  buttons: {
+  /*   buttons: {
     secondary: {
       backgroundColor: "red",
       fontWeight: "bold",
@@ -23,7 +23,7 @@ const theme = {
         bg: "dark",
       },
     },
-  },
+  }, */
   text: {
     caps: {
       textTransform: "uppercase",

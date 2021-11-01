@@ -237,7 +237,16 @@ const GodotIcon = () => {
     ></TechIcons>
   );
 };
+const HerokuIcon = () => {
+  return (
+    <TechIcons
+      data={[{ name: "cib:heroku", tooltip: "Heroku", color: "white" }]}
+      size={2.6}
+    ></TechIcons>
+  );
+};
 export {
+  HerokuIcon,
   PiIcon,
   SvelteIcon,
   GolangIcon,

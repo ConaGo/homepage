@@ -40,8 +40,8 @@ import {
   LanguageIcons2,
   LibrayIcons,
   LearningIcons,
+  HerokuIcon,
 } from "./icon";
-
 import HorizontalArrow from "../components/horizontalArrow";
 /* import config from "../config"; */
 const Card = ({ show = false, page = 0, isBig, horizontalScroll }) => {
@@ -146,13 +146,18 @@ const Card = ({ show = false, page = 0, isBig, horizontalScroll }) => {
       });
       trailApi2.start({
         opacity: page === 2 ? 1 : 0,
-        width: page === 2 ? mainWidth() : "0%",
+        width: mainWidth(),
         height: page === 2 ? "60%" : "0%",
       });
     },
     config: config.molasses,
   });
-
+  const thirdStyles = useSpring({
+    config: config.wobbly,
+    opacity: page === 3 ? 1 : 0,
+    width: page === 3 ? mainWidth() : "0%",
+    height: page === 3 ? "60%" : "0%",
+  });
   return transitions(({ opacity }, item) =>
     !(page >= 1 || page <= 3) ? null : item ? (
       <animated.div
@@ -173,7 +178,6 @@ const Card = ({ show = false, page = 0, isBig, horizontalScroll }) => {
             width: "100%",
           }}
         >
-          {/* {!isBig && <HorizontalArrow onClick={scrollHorizontal} />} */}
           {isBig ? (
             <>
               <animated.div style={{ ...boxStyle, ...trailStyles1[0] }}>
@@ -221,29 +225,60 @@ const Card = ({ show = false, page = 0, isBig, horizontalScroll }) => {
           }}
         >
           {/* {!isBig && <HorizontalArrow onClick={scrollHorizontal} />} */}
-          {isBig ? (
-            <>
+          {page === 2 ? (
+            isBig ? (
+              <>
+                <animated.div style={{ ...boxStyle, ...trailStyles2[0] }}>
+                  <Project1 isBig={isBig}></Project1>
+                </animated.div>
+                <animated.div style={{ ...boxStyle, ...trailStyles2[1] }}>
+                  <Project2 isBig={isBig}></Project2>
+                </animated.div>
+                <animated.div style={{ ...boxStyle, ...trailStyles2[2] }}>
+                  <Project3 isBig={isBig}></Project3>
+                </animated.div>
+              </>
+            ) : horizontalScroll === 0 ? (
               <animated.div style={{ ...boxStyle, ...trailStyles2[0] }}>
                 <Project1 isBig={isBig}></Project1>
               </animated.div>
+            ) : horizontalScroll === 1 ? (
               <animated.div style={{ ...boxStyle, ...trailStyles2[1] }}>
                 <Project2 isBig={isBig}></Project2>
               </animated.div>
+            ) : (
               <animated.div style={{ ...boxStyle, ...trailStyles2[2] }}>
                 <Project3 isBig={isBig}></Project3>
               </animated.div>
+            )
+          ) : !page === 3 ? null : isBig ? (
+            <>
+              <animated.div
+                onClick={() =>
+                  openInNewTab("https://rest-countries-p.herokuapp.com/")
+                }
+                style={{ ...boxStyle, ...thirdStyles }}
+              >
+                <Project4 isBig={isBig} show={page === 3}></Project4>
+              </animated.div>
+              <animated.div style={{ ...boxStyle, ...thirdStyles }}>
+                <Project4 isBig={isBig} show={page === 3}></Project4>
+              </animated.div>
+              <animated.div style={{ ...boxStyle, ...thirdStyles }}>
+                <Project4 isBig={isBig} show={page === 3}></Project4>
+              </animated.div>
             </>
           ) : horizontalScroll === 0 ? (
-            <animated.div style={{ ...boxStyle, ...trailStyles2[0] }}>
-              <Project1 isBig={isBig}></Project1>
+            <animated.div style={{ ...boxStyle, ...thirdStyles }}>
+              <AboutMe1 isBig={isBig}></AboutMe1>
             </animated.div>
           ) : horizontalScroll === 1 ? (
-            <animated.div style={{ ...boxStyle, ...trailStyles2[1] }}>
-              <Project2 isBig={isBig}></Project2>
+            <animated.div style={{ ...boxStyle, ...thirdStyles }}>
+              <AboutMe1 isBig={isBig}></AboutMe1>
             </animated.div>
           ) : (
-            <animated.div style={{ ...boxStyle, ...trailStyles2[2] }}>
-              <Project3 isBig={isBig}></Project3>
+            <animated.div style={{ ...boxStyle, ...thirdStyles }}>
+              <AboutMe1 isBig={isBig}></AboutMe1>
             </animated.div>
           )}
         </div>
@@ -554,10 +589,9 @@ const Project2 = ({ isBig }) => {
     <>
       <Box style={fontStyle}>Solana Game</Box>
       <Hr />
-      <Box style={fontStyleBody}>
-        Tower defense inspired game with NFTs and smart Contracts on the Solana
-        Blockchain
-      </Box>
+      <Box style={fontStyleBody}>Tower defense inspired game with</Box>
+      <Box style={fontStyleBody}>NFTs and smart Contracts on the</Box>
+      <Box style={fontStyleBody}>Solana Blockchain</Box>
       <Hr />
       <Box
         style={fontStyleBody}
@@ -693,5 +727,241 @@ const Project3 = ({ isBig }) => {
         </span>
       </div>
     </>
+  );
+};
+
+const Project4 = ({ isBig, show }) => {
+  const fontStyle = {
+    fontSize: !isBig ? "2.8rem" : "3.3rem",
+    fontFamily: "iceland, roboto",
+    color: "white",
+    margin: "0em  0.4em",
+    whiteSpace: "nowrap",
+    textAlign: "center",
+  };
+  const fontStyleBody = {
+    fontSize: !isBig ? "1.3rem" : "1.3rem",
+    fontFamily: "raleway, roboto",
+    color: "white",
+    wordWrap: "break-word",
+    textAlign: "center",
+    margin: "0.5em",
+  };
+  const boxStyle = {
+    margin: "0 3em",
+  };
+  if (!show) return null;
+  return (
+    <>
+      <Box style={fontStyle}>Rest Countries</Box>
+      <Box style={fontStyleBody}>Search for country details or</Box>
+      <Box style={fontStyleBody}>locations on a worldmap </Box>
+      <Hr />
+      <Box style={fontStyleBody}>Result of a programming Exercise</Box>
+      <Box style={fontStyleBody}>Hacked together in 4 hours</Box>
+      <Hr />
+      <Box
+        style={fontStyleBody}
+        onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+      >
+        <p style={{ marginTop: 0 }}> Written with</p>
+        <Box
+          onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <ReactIcon />
+          <MuiIcon />
+        </Box>
+      </Box>
+      <Box
+        style={fontStyleBody}
+        onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+      >
+        <p style={{ marginTop: 0 }}>Hosted on</p>
+
+        <Box
+          onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <HerokuIcon />
+        </Box>
+      </Box>
+      <Hr />
+      <Box style={fontStyleBody}>Done!</Box>
+      <div style={{ margin: "0 auto", width: "90%" }} class="meter animate">
+        <span style={{ width: "100%" }}>
+          <span></span>
+        </span>
+      </div>
+    </>
+  );
+};
+const Project5 = ({ isBig }) => {
+  const fontStyle = {
+    fontSize: !isBig ? "2.8rem" : "3.3rem",
+    fontFamily: "iceland, roboto",
+    color: "white",
+    margin: "0em  0.4em",
+    whiteSpace: "nowrap",
+    textAlign: "center",
+  };
+  const fontStyleBody = {
+    fontSize: !isBig ? "1.3rem" : "1.3rem",
+    fontFamily: "raleway, roboto",
+    color: "white",
+    wordWrap: "break-word",
+    textAlign: "center",
+    margin: "0.5em",
+  };
+  const boxStyle = {
+    margin: "0 3em",
+  };
+  return (
+    <>
+      <Box style={fontStyle}>Quizflip.de</Box>
+      <Box style={fontStyleBody}>Digital learning and Quiz app</Box>
+      <Hr />
+
+      <Box
+        style={fontStyleBody}
+        onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+      >
+        Backend
+        <Box
+          onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <NodeIcon />
+          <NestJSIcon />
+        </Box>
+      </Box>
+      <Hr />
+      <Box
+        style={fontStyleBody}
+        onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+      >
+        Frontend
+        <Box
+          onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <ReactIcon />
+          <MuiIcon />
+          <NextJSIcon />
+        </Box>
+      </Box>
+      <Box style={fontStyleBody}>Progress to first iteration</Box>
+      <div style={{ margin: "0 auto", width: "90%" }} class="meter animate">
+        <span style={{ width: "70%" }}>
+          <span></span>
+        </span>
+      </div>
+    </>
+  );
+};
+const Project6 = ({ isBig }) => {
+  const fontStyle = {
+    fontSize: !isBig ? "2.8rem" : "3.3rem",
+    fontFamily: "iceland, roboto",
+    color: "white",
+    margin: "0em  0.4em",
+    whiteSpace: "nowrap",
+    textAlign: "center",
+  };
+  const fontStyleBody = {
+    fontSize: !isBig ? "1.3rem" : "1.3rem",
+    fontFamily: "raleway, roboto",
+    color: "white",
+    wordWrap: "break-word",
+    textAlign: "center",
+    margin: "0.5em",
+  };
+  const boxStyle = {
+    margin: "0 3em",
+  };
+  return (
+    <>
+      <Box style={fontStyle}>Quizflip.de</Box>
+      <Box style={fontStyleBody}>Digital learning and Quiz app</Box>
+      <Hr />
+
+      <Box
+        style={fontStyleBody}
+        onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+      >
+        Backend
+        <Box
+          onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <NodeIcon />
+          <NestJSIcon />
+        </Box>
+      </Box>
+      <Hr />
+      <Box
+        style={fontStyleBody}
+        onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+      >
+        Frontend
+        <Box
+          onClick={() => openInNewTab("https://www.github.com/conago/Quizflip")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <ReactIcon />
+          <MuiIcon />
+          <NextJSIcon />
+        </Box>
+      </Box>
+      <Box style={fontStyleBody}>Progress to first iteration</Box>
+      <div style={{ margin: "0 auto", width: "90%" }} class="meter animate">
+        <span style={{ width: "70%" }}>
+          <span></span>
+        </span>
+      </div>
+    </>
+  );
+};
+
+const Links = () => {
+  const fontStyleBody = {
+    fontSize: "1.3rem",
+    fontFamily: "raleway, roboto",
+    color: "white",
+    wordWrap: "break-word",
+    textAlign: "center",
+    margin: "0.5em",
+  };
+  return (
+    <div style>
+      <Button variant="secondary">
+        <p style={fontStyleBody}>Link</p>
+      </Button>
+      <Button />
+    </div>
   );
 };
